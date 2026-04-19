@@ -1,0 +1,116 @@
+@import "tailwindcss";
+
+:root {
+  color-scheme: dark;
+  --bg: #08111f;
+  --panel: rgba(15, 23, 42, 0.88);
+  --panel-strong: rgba(15, 23, 42, 0.96);
+  --border: rgba(148, 163, 184, 0.18);
+  --text: #e2e8f0;
+  --muted: #94a3b8;
+  --accent: #38bdf8;
+  --success: #34d399;
+  --danger: #fb7185;
+  --shadow: 0 18px 48px rgba(2, 8, 23, 0.36);
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; min-height: 100%; background: radial-gradient(circle at top, rgba(20, 31, 55, 0.94) 0%, rgba(7, 13, 27, 1) 48%, rgba(2, 6, 16, 1) 100%); color: var(--text); font-family: 'Geist', 'Outfit', ui-sans-serif, system-ui, sans-serif; }
+a { color: inherit; }
+pre { margin: 0; white-space: pre-wrap; word-break: break-word; font-family: 'SFMono-Regular', ui-monospace, monospace; }
+button, input, textarea { font: inherit; }
+button { cursor: pointer; border: 0; border-radius: 16px; background: linear-gradient(135deg, #0ea5e9, #2563eb); color: white; padding: 0.85rem 1.05rem; }
+button.ghost { background: rgba(15, 23, 42, 0.36); border: 1px solid var(--border); }
+input, textarea {
+  width: 100%;
+  border-radius: 18px;
+  border: 1px solid var(--border);
+  background: rgba(15, 23, 42, 0.72);
+  color: var(--text);
+  padding: 0.95rem 1rem;
+}
+textarea { min-height: 8rem; resize: vertical; }
+
+.app-shell { max-width: 960px; margin: 0 auto; padding: max(1rem, env(safe-area-inset-top)) 1rem max(1.5rem, env(safe-area-inset-bottom)); }
+.topbar { display: flex; align-items: center; justify-content: space-between; padding: 0.5rem 0 1rem; position: sticky; top: 0; z-index: 5; backdrop-filter: blur(18px); background: linear-gradient(180deg, rgba(8, 17, 31, 0.96), rgba(8, 17, 31, 0.64)); }
+.topbar h1 { margin: 0.2rem 0 0; font-size: clamp(1.5rem, 4vw, 2.15rem); }
+.page-grid { display: grid; gap: 1rem; }
+.session-grid { padding-bottom: 0; }
+.panel-card, .message-card, .composer-card, .approval-card, .empty-state {
+  background: linear-gradient(180deg, rgba(17, 25, 40, 0.94), rgba(12, 18, 31, 0.9));
+  border: 1px solid rgba(148, 163, 184, 0.14);
+  box-shadow: 0 18px 48px rgba(2, 8, 23, 0.32), inset 0 1px 0 rgba(255,255,255,0.04);
+  border-radius: 28px;
+  padding: 1rem;
+  backdrop-filter: blur(18px);
+}
+.hero-card h2, .empty-state h2 { margin-top: 0.25rem; font-size: clamp(1.5rem, 4vw, 2rem); }
+.eyebrow { margin: 0; text-transform: uppercase; letter-spacing: 0.12em; color: var(--accent); font-size: 0.72rem; font-weight: 700; }
+.stack-form, .project-list, .approval-stack, .message-list { display: grid; gap: 0.85rem; }
+.project-item { text-align: left; background: rgba(30, 41, 59, 0.88); border: 1px solid rgba(56, 189, 248, 0.14); }
+.project-item span { display: block; color: var(--muted); font-size: 0.85rem; margin-top: 0.3rem; }
+.error-banner { color: white; background: rgba(251, 113, 133, 0.9); padding: 0.9rem 1rem; border-radius: 18px; }
+.session-header { display: flex; justify-content: space-between; align-items: center; gap: 1rem; }
+.status-pill { padding: 0.45rem 0.85rem; border-radius: 999px; background: rgba(30, 41, 59, 0.86); text-transform: capitalize; }
+.status-pill.active { background: rgba(52, 211, 153, 0.18); color: #bbf7d0; }
+.status-pill.awaiting_approval { background: rgba(250, 204, 21, 0.16); color: #fde68a; }
+.status-pill.error { background: rgba(251, 113, 133, 0.18); color: #fecdd3; }
+.message-card.user { border-color: rgba(56, 189, 248, 0.32); background: linear-gradient(180deg, rgba(13, 26, 44, 0.98), rgba(12, 22, 38, 0.92)); }
+.message-card.assistant { border-color: rgba(52, 211, 153, 0.28); }
+.message-card.system { border-color: rgba(244, 114, 182, 0.24); }
+.message-meta-row { display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; margin-bottom: 0.75rem; }
+.message-role-pill { display: inline-flex; align-items: center; gap: 0.35rem; border-radius: 999px; background: rgba(255,255,255,0.06); padding: 0.35rem 0.7rem; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.12em; color: rgba(226, 232, 240, 0.82); }
+.message-phase { font-size: 0.72rem; color: var(--accent); text-transform: capitalize; }
+.composer-card { position: sticky; bottom: 0; z-index: 6; margin: 0 -1rem calc(-1 * max(1.5rem, env(safe-area-inset-bottom))) -1rem; padding: 1rem 1rem max(1.1rem, env(safe-area-inset-bottom)); border-bottom-left-radius: 0; border-bottom-right-radius: 0; border-left: 0; border-right: 0; background: linear-gradient(180deg, rgba(10, 16, 27, 0.9), rgba(8, 12, 21, 0.98)); box-shadow: 0 -18px 38px rgba(2, 8, 23, 0.35), inset 0 1px 0 rgba(255,255,255,0.05); }
+.composer-footer, .panel-header, .row-actions, .approval-actions { display: flex; gap: 0.75rem; align-items: center; justify-content: space-between; }
+.suggestion-list { display: grid; gap: 0.5rem; margin: 0.8rem 0; }
+.suggestion-list button { background: rgba(15, 23, 42, 0.64); border: 1px solid var(--border); text-align: left; display: grid; gap: 0.2rem; }
+.suggestion-list button.active { border-color: rgba(56, 189, 248, 0.55); box-shadow: inset 0 0 0 1px rgba(56, 189, 248, 0.18); }
+.suggestion-list span { color: var(--muted); font-size: 0.84rem; }
+.approval-card code { display: block; padding: 0.85rem; border-radius: 14px; background: rgba(2, 6, 23, 0.66); margin: 0.65rem 0; }
+.approval-actions { flex-wrap: wrap; justify-content: flex-start; margin-top: 0.85rem; }
+.diff-block { max-height: 20rem; overflow: auto; background: rgba(2, 6, 23, 0.78); padding: 1rem; border-radius: 18px; }
+summary { cursor: pointer; font-weight: 700; }
+
+@media (min-width: 860px) {
+  .page-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: start; }
+  .hero-card, .session-header, .message-list, .composer-card, .approval-stack, .panel-card.terminal-panel { grid-column: 1 / -1; }
+}
+
+.project-item.is-active { border-color: rgba(52, 211, 153, 0.55); box-shadow: inset 0 0 0 1px rgba(52, 211, 153, 0.16); }
+
+.session-picker-card { overflow: hidden; }
+.session-dropdown-list { margin-top: 0.75rem; max-height: 22rem; overflow: auto; }
+
+.session-header-copy { min-width: 0; }
+.session-header-copy p:last-child { margin: 0.35rem 0 0; color: var(--muted); font-size: 0.9rem; }
+.session-header-meta { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 0.5rem; }
+.status-pill.connection-live { background: rgba(59, 130, 246, 0.16); color: #bfdbfe; }
+.status-pill.connection-connecting { background: rgba(250, 204, 21, 0.12); color: #fde68a; }
+.status-pill.connection-error { background: rgba(251, 113, 133, 0.14); color: #fecdd3; }
+.empty-state { padding: 1.5rem; min-height: 13rem; display: grid; align-content: center; gap: 0.85rem; }
+.empty-state p:last-child { margin: 0; color: var(--muted); }
+.message-list { gap: 1rem; }
+.message-card { padding: 1rem 1rem 1.1rem; }
+.message-card pre { font-size: 0.98rem; line-height: 1.65; color: rgba(226,232,240,0.96); }
+.composer-heading-row { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-bottom: 0.9rem; }
+.composer-heading-row h3 { margin: 0.2rem 0 0; font-size: 1.05rem; }
+.composer-status-dot { width: 0.85rem; height: 0.85rem; border-radius: 999px; box-shadow: 0 0 0 6px rgba(255,255,255,0.02); }
+.composer-status-dot.is-ready { background: #34d399; }
+.composer-status-dot.is-busy { background: #f59e0b; }
+.composer-card textarea { min-height: 7rem; border-radius: 22px; background: rgba(10, 17, 29, 0.92); box-shadow: inset 0 1px 0 rgba(255,255,255,0.05); }
+.composer-footer p { margin: 0; color: var(--muted); font-size: 0.85rem; max-width: 18rem; }
+.session-picker-toggle { min-width: 8.5rem; }
+.session-dropdown-list { margin-top: 0.9rem; max-height: 18rem; overflow: auto; padding-right: 0.2rem; }
+.session-dropdown-list .project-item { padding: 0.95rem 1rem; border-radius: 20px; }
+.session-picker-date { display: block; color: var(--muted); font-size: 0.78rem; margin-top: 0.3rem; }
+@media (max-width: 859px) {
+  .app-shell { padding-inline: 0.85rem; }
+  .page-grid { gap: 0.85rem; }
+  .session-header { align-items: flex-start; flex-direction: column; }
+  .session-header-meta { justify-content: flex-start; }
+  .composer-card { margin-inline: -0.85rem; }
+  .composer-footer { align-items: flex-end; }
+  .composer-footer p { max-width: 12rem; font-size: 0.8rem; }
+  .empty-state { min-height: 11rem; }
+}

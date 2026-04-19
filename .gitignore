@@ -1,0 +1,8 @@
+node_modules/
+dist/
+coverage/
+.cache/
+apps/mobile-web/.tanstack/
+apps/mobile-web/src/routeTree.gen.ts
+.omx
+.codex

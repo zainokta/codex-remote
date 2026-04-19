@@ -1,0 +1,15 @@
+{
+  "name": "codex-remote",
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "postinstall": "npm run build --workspace @codex-remote/shared-types",
+    "build": "npm run build --workspace @codex-remote/shared-types && npm run build --workspace @codex-remote/gateway && npm run build --workspace @codex-remote/mobile-web",
+    "test": "npm run test --workspace @codex-remote/shared-types && npm run test --workspace @codex-remote/gateway && npm run test --workspace @codex-remote/mobile-web",
+    "lint": "npm run lint --workspace @codex-remote/mobile-web && npm run lint --workspace @codex-remote/gateway && npm run lint --workspace @codex-remote/shared-types"
+  }
+}
